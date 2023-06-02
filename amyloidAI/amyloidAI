@@ -1,18 +1,46 @@
 #!/usr/bin/env python
 
 import os
+from pathlib import Path
 from amyloidAI.run import run
+from amyloidAI.preprocess import (
+    skullstrip, 
+    spatial_align, 
+    resample,
+    cleanup
+)
 
 if __name__ == "__main__":
 
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', help='Input PET file', required=True, type=str)
-    parser.add_argument('--anat', help='Input anatomical file (MRI or CT). Optionally used for skullstripping and resampling to MNI space', required=False, type=str)
+    parser.add_argument('--MRI', help='Input anatomical MRI file. Optionally used for skullstripping and resampling to MNI space', required=False, type=str, default=None)
+    parser.add_argument('--CT', help='Input anatomical CT file. Optionally used for skullstripping and resampling to MNI space', required=False, type=str, default=None)
 
     args = parser.parse_args()
+    PET = Path(args.input)
+    ANAT = None
+    ANAT_type = None
 
-    # TODO: Use args.anat to prepare PET file
+    if args.MRI:
+        assert args.CT is None
+        ANAT = Path(args.MRI)
+        ANAT_type = 'MRI'
+    if args.CT:
+        assert args.MRI is None
+        ANAT = Path(args.CT)
+        ANAT_type = 'CT'
 
-    d = run(args.input)
+    if ANAT is not None:
+        skullstrip(ANAT, ANAT_type)
+        spatial_align(ANAT, ANAT_type)
+        resample(PET, ANAT_type)
+        PET = PET.parent.joinpath('PET_affine_BET.nii.gz')
+
+    d = run(PET)
     print(d)
+
+    if ANAT is not None:
+        #cleanup(PET)
+        pass

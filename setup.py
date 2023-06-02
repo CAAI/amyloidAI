@@ -21,7 +21,9 @@ setup(
      install_requires=[
          'onnxruntime',
          'numpy',
-         'torchio'
+         'torchio',
+         'nipype',
+         
      ],
      classifiers=[
          'Programming Language :: Python :: 3.8',
