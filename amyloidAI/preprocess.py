@@ -109,7 +109,7 @@ def resample(PET, anat_type):
         mask.run()
 
 def cleanup(PET):
-    files = ['ANAT_smoothed','ANAT_smoothed_0','ANAT_smoothed_0_100', 'ANAT_smoothed_0-100_crop', 
+    files = ['ANAT_smoothed','ANAT_smoothed_0','ANAT_smoothed_0-100', 'ANAT_smoothed_0-100_crop', 
              'crop_transform', 'ANAT_BET', 'ANAT_BET_mask','ANAT_affine','PET_affine_BET',
              'mask_affine','PET_affine','PET_affine_BET']
     for f in files:
