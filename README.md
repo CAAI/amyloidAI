@@ -17,3 +17,13 @@ To run the preprocessing as part of the algorithm you need to supply a CT or an 
 or
 
 `amyloidAI -i <PET.nii.gz> --MRI <MRI.nii.gz>`
+
+## Algorithm output and interpretation
+The algorithm outputs (and prints) a dictionary with the keys: `suvr`, `suvr_std`, `diagnosis`, `diagnosis_std`. 
+The main output, suvr and diagnosis, is the median and mean, respectively, of the 5-fold ensemble inference. The *_std outputs are the standard deviation of the five predicted values.
+
+### SUVr
+SUVr < 1.35 can be interpreted as amyloid negative and > 1.35 as amyloid positive. A high standard deviation indicates less model certainty for the diagnosis of the patient.
+
+### Diagnosis
+A diagnosis value < 0.5 indicates amyloid negative and > 0.5 amyloid positive. Here too, a larger standard deviation indicates less certainty for the diagnosis.
