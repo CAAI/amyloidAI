@@ -17,13 +17,12 @@ setup(
      scripts=[
              'amyloidAI/amyloidAI',
      ],
-     packages=find_packages('amyloidAI'),
+     packages=find_packages(include=['amyloidAI']),
      install_requires=[
          'onnxruntime',
          'numpy',
          'torchio',
          'nipype',
-         
      ],
      classifiers=[
          'Programming Language :: Python :: 3.8',
