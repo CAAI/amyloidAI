@@ -1,7 +1,10 @@
 # amyloidAI
 Estimation of brain amyloid accumulation using deep learning in clinical [<sup>11</sup>C]PiB PET imaging.
 
-The manuscript is under consideration for publication.
+## Cite:
+When using, please cite 
+
+[Ladefoged, C.N., Anderberg, L., Madsen, K. et al. <br>Estimation of brain amyloid accumulation using deep learning in clinical [11C]PiB PET imaging.<br>EJNMMI Phys 10, 44 (2023).<br>https://doi.org/10.1186/s40658-023-00562-7](https://link.springer.com/article/10.1186/s40658-023-00562-7)
 
 ## Usage:
 The algorithms require the PET image to be skull stripped and resampled to MNI space in 1x1x1 mm<sup>3</sup> resolution and 256x256x256 matrix.
